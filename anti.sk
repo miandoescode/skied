@@ -1,0 +1,8 @@
+on craft of hopper:
+	cancel event
+	send "&cYou must buy hoppers from the shop"
+	
+on inventory click:
+    if type of event-inventory is anvil inventory:
+        if length of rename text of event-inventory > 0:
+            cancel event

@@ -1,0 +1,56 @@
+on join:
+	wait 5 ticks
+	player command "spawn"
+
+
+on join:
+  if {joins::*} contains player's uuid:
+    loop 80 times:
+      send " " to player
+    send "        &6&lWELCOME BACK "
+    send " "
+    send "    &9&lDISCORD&7・&9/discord "
+    send "    &a&lSTORE&7・&a/buy "
+    send "    &d&lWEBSITE&7・&dSOON! "
+    send " "
+    set join message to ""
+    if {stats.eula::%player%} = 0:
+      broadcast "&7[&a✓&7] &7%player%"
+    else if {stats.eula::%player%} = 1:
+      broadcast "&7[&a✓&7] &8(&3&lMANOS&8) &7%player%"
+    else if {stats.eula::%player%} = 2:
+      broadcast "&7[&a✓&7] &8(&e&lGYRA&8) &7%player%"
+    else if {stats.eula::%player%} = 3:
+      broadcast "&7[&a✓&7] &8(&2&lZUME&8) &7%player%"
+    else:
+      broadcast "&7[&a✓&7] &7%player%"
+    play sound "minecraft:entity.player.levelup" to player
+  else:
+    loop 80 times:
+      send " " to player
+    add player's uuid to {joins::*}
+    add 1 to {joins}
+    send "        &6&lWELCOME"
+    send " "
+    send "    &9&lDISCORD&7・&9/discord "
+    send "    &a&lSTORE&7・&a/buy "
+    send "    &d&lWEBSITE&7・&dSOON! "
+    send " "
+    set join message to ""
+    broadcast "&8[&eSKYBLOCK&8] &8[&e&lNEW&8] &f%player% &7has joined for the first time &f##%{joins}%"
+    console command "harvesterhoe %player%"
+    set {stats::balance::%player%} to 0 if {stats::balance::%player%} is not set
+
+    
+
+on disconnect:
+	set leave message to "&7[&c☓&7] &7%player%"
+ 
+ 
+
+command /resetjoins:
+	permission: joins.reset
+	trigger:
+		delete {joins}
+		delete {joins::*}
+		send "&8[&eS&8] &7all joins were &creset&7."

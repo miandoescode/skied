@@ -1,0 +1,27 @@
+every 10 minutes in world "spawnworld":
+	loop all players:
+		if "%region at loop-player%" contains "afk":
+			set {_rew1} to a random integer between 1 and 5
+			if {_red1} = 1:
+				console command "givekey:common %loop-player%"
+			if {_rew1} = 2:
+				console command "givekey:uncommon %loop-player%"
+			if {_rew1} = 3:
+				console command "givekey:common %loop-player%"
+			if {_rew1} = 4:
+				add 2500 to {scrap::%loop-player's uuid%}
+			if {_rew2} = 5:
+				add 5000 to {stats::balance::%loop-player%}
+			send "&8[&a&lAFK&8] &7You have recieved rewards for being afk!" to loop-player
+	broadcast "&8[&a&lAFK&8] &7・ &7All &aplayers in the afk pool &7have recieved &aRewards &7(&a/afk&7)"
+	
+
+command /afk:
+	trigger:
+		teleport player to {afkarea}
+		send "&6&lTELEPORT&7・Taking you to &6&nAFK"
+
+command /setafk:
+	permission: admin
+	trigger:
+		set {afkarea} to player's location

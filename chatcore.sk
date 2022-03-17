@@ -1,0 +1,195 @@
+command /freestuff:
+	trigger:
+		if {freestuff::*} contains player's uuid:
+			send "&4&lERROR &8| &7You've already claimed this."
+			stop
+		add player's uuid to {freestuff::*}
+		give player 2 of prismarine shard named "&d&lCOMMON CRATE KEY"
+		broadcast "&b&lFREE&7・&b%player% &7just recieved &d&nx2 Common Keys&7 through &b/freestuff"
+		
+
+command /resetfreestuff:
+	permission: anon.yeah
+	trigger:
+		clear {freestuff::*}
+
+every 2 minutes:
+	wait 36 seconds
+	broadcast " " 
+	broadcast "&a&lLINK&7・Get a free &a*&b* &a&lL&b&lI&a&lN&b&lK &a&lL&b&lO&a&lO&b&lT&a&lB&b&lO&a&lX &b*&a* &7for linking your account! (&a/link&7)"
+	broadcast " "
+	
+every 5 minutes:
+	wait 2 minutes
+	broadcast " " 
+	broadcast "&6&lDAILY DEALS&7・&7The &6Next Purchase over $7.50 &7Today will recieve a free &6&nMONTHLY CRATE"
+	broadcast " "
+	wait 2 minutes
+	broadcast " " 
+	broadcast "&6&lDONATIONS&7・All donations today will execute &6&nLegendary keyall"
+	broadcast " "
+	
+command /adstream:
+	permission: criticyl
+	cooldown: 2 minutes
+	cooldown message: &c2Minute Cooldown
+	trigger:
+		broadcast " "
+		broadcast "&d&lSTREAM &8| &7Tune in to &dhttps://www.twitch.tv/criticyl &7( &d&lRANK GIVEAWAYS HAPPENING NOW&7)"
+		broadcast " "
+
+
+
+command /discord:
+    trigger:
+        send formatted "&e&lSKIED&7・ &fClick<url:https://discord.gg/skied> &b&lHERE<reset>&f to join our discord server!"
+		
+command /payouts:
+	trigger:
+		send "&b&lPAYOUTS"
+		send "&e##1 &8| &b$40 paypal or $80 buycraft"
+		send "&e##2 &8| &b$25 paypal or $50 buycraft"
+		send "&e##3 &8| &b$15 paypal or $30 buycraft"
+		send "&e##4 &8| &b$10 paypal or $20 buycraft"
+		send "&e##5 &8| &b$10 paypal or $20 buycraft"
+
+
+
+
+
+
+
+
+
+on join:
+	set {stats.eula::%player%} to 0 if {stats.eula::%player%} is not set
+
+command /seteularank <player> <integer>:
+	permission: console.seteula
+	trigger:
+		set {stats.eula::%arg-1%} to arg-2
+		send "&4&lADMIN&7・Set &f%arg-1%'s &4EULA STATUS &7to &f%arg-2%"
+		
+
+
+on chat:
+	if player's group = "owner":
+		if {stats.eula::%player%} = 1:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&3&lMANOS&8) &8(<##DF0000>&lOWNER&8) &c%player% &7» &c%message%"
+		if {stats.eula::%player%} = 2:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&e&lGYRA&8) &8(<##DF0000>&lOWNER&8) &c%player% &7» &c%message%"
+		if {stats.eula::%player%} = 3:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&2&lZUME&8) &8(<##DF0000>&lOWNER&8) &c%player% &7» &c%message%"
+		if {stats.eula::%player%} = 0:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(<##DF0000>&lOWNER&8) &c%player% &7» &c%message%"
+	if player's group = "jrmod":
+		if {stats.eula::%player%} = 1:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&3&lMANOS&8) &8(<##349dd1>&lJR.MOD&8) &3%player% &7» &f%message%"
+		if {stats.eula::%player%} = 2:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&e&lGYRA&8) &8(<##349dd1>&lJR.MOD&8) &7%player% &7» &e%message%"
+		if {stats.eula::%player%} = 3:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&2&lZUME&8) &8(<##349dd1>&lJR.MOD&8) &7%player% &7» &2%message%"
+		if {stats.eula::%player%} = 0:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(<##349dd1>&lJR.MOD&8) &7%player% &7» &f%message%"
+	if player's group = "media":
+		if {stats.eula::%player%} = 1:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&3&lMANOS&8) &8(&d&lMEDIA&8) &d%player% &7» &f%message%"
+		if {stats.eula::%player%} = 2:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&e&lGYRA&8) &8(&d&lMEDIA&8) &d%player% &7» &f%message%"
+		if {stats.eula::%player%} = 3:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&2&lZUME&8) &8(&d&lMEDIA&8) &d%player% &7» &f%message%"
+		if {stats.eula::%player%} = 0:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&d&lMEDIA&8) &d%player% &7» &d%message%"
+	if player's group = "admin":
+		if {stats.eula::%player%} = 1:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&3&lMANOS&8) &8(&c&lADMIN&8) &c%player% &7» &c%message%"
+		if {stats.eula::%player%} = 2:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&e&lGYRA&8) &8(&c&lADMIN&8) &c%player% &7» &c%message%"
+		if {stats.eula::%player%} = 3:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&2&lZUME&8) &8(&c&lADMIN&8) &c%player% &7» &c%message%"
+		if {stats.eula::%player%} = 0:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&c&lADMIN&8) &c%player% &7» &c%message%"
+	if player's group = "default":
+		if {stats.eula::%player%} = 1:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&3&lMANOS&8) &8(&7&lMEMBER&8) &3%player% &7» &f%message%"
+		if {stats.eula::%player%} = 2:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&e&lGYRA&8) &8(&7&lMEMBER&8) &e%player% &7» &f%message%"
+		if {stats.eula::%player%} = 3:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&2&lZUME&8) &8(&7&lMEMBER&8) &2%player% &7» &f%message%"
+		if {stats.eula::%player%} = 0:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&7&lMEMBER&8) &7%player% &7» &7%message%"
+	if player's group = "coal":
+		if {stats.eula::%player%} = 1:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&3&lMANOS&8) &8(&8&lCOAL&8) &3%player% &7» &f%message%"
+		if {stats.eula::%player%} = 2:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&e&lGYRA&8) &8(&8&lCOAL&8) &e%player% &7» &f%message%"
+		if {stats.eula::%player%} = 3:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&2&lZUME&8) &8(&8&lCOAL&8) &2%player% &7» &f%message%"
+		if {stats.eula::%player%} = 0:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&8&lCOAL&8) &7%player% &7» &f%message%"
+	if player's group = "iron":
+		if {stats.eula::%player%} = 1:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&3&lMANOS&8) &8(<##d1cbd1>&lIRON&8) &3%player% &7» &f%message%"
+		if {stats.eula::%player%} = 2:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&e&lGYRA&8) &8(<##d1cbd1>&lIRON&8) &e%player% &7» &f%message%"
+		if {stats.eula::%player%} = 3:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&2&lZUME&8) &8(<##d1cbd1>&lIRON&8) &2%player% &7» &f%message%"
+		if {stats.eula::%player%} = 0:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(<##d1cbd1>&lIRON&8) &7%player% &7» &f%message%"
+	if player's group = "gold":
+		if {stats.eula::%player%} = 1:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&3&lMANOS&8) &8(&e&lGOLD&8) &3%player% &7» &f%message%"
+		if {stats.eula::%player%} = 2:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&e&lGYRA&8) &8(&e&lGOLD&8) &e%player% &7» &f%message%"
+		if {stats.eula::%player%} = 3:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&2&lZUME&8) &8(&e&lGOLD&8) &2%player% &7» &f%message%"
+		if {stats.eula::%player%} = 0:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&e&lGOLD&8) &7%player% &7» &f%message%"
+	if player's group = "diamond":
+		if {stats.eula::%player%} = 1:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&3&lMANOS&8) &8(<##00ddff>&lDIAMOND&8) &3%player% &7» &f%message%"
+		if {stats.eula::%player%} = 2:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&e&lGYRA&8) &8(<##00ddff>&lDIAMOND&8) &e%player% &7» &f%message%"
+		if {stats.eula::%player%} = 3:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&2&lZUME&8) &8(<##00ddff>&lDIAMOND&8) &2%player% &7» &f%message%"
+		if {stats.eula::%player%} = 0:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(<##00ddff>&lDIAMOND&8) &7%player% &7» &f%message%"
+	if player's group = "emerald":
+		if {stats.eula::%player%} = 1:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&3&lMANOS&8) &8(<##04d43c>&lEMERALD&8) &3%player% &7» &f%message%"
+		if {stats.eula::%player%} = 2:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&e&lGYRA&8) &8(<##04d43c>&lEMERALD&8) &e%player% &7» &f%message%"
+		if {stats.eula::%player%} = 3:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&2&lZUME&8) &8(<##04d43c>&lEMERALD&8) &2%player% &7» &f%message%"
+		if {stats.eula::%player%} = 0:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(<##04d43c>&lEMERALD&8) &7%player% &7» &f%message%"
+	if player's group = "skied":
+		if {stats.eula::%player%} = 1:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&3&lMANOS&8) &8(&6&lS&f&lK&7&lI&6&lE&f&lD&8) &3%player% &7» &f%message%"
+		if {stats.eula::%player%} = 2:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&e&lGYRA&8) &8(&6&lS&f&lK&7&lI&6&lE&f&lD&8) &e%player% &7» &f%message%"
+		if {stats.eula::%player%} = 3:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&2&lZUME&8) &8(&6&lS&f&lK&7&lI&6&lE&f&lD&8) &2%player% &7» &f%message%"
+		if {stats.eula::%player%} = 0:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&6&lS&f&lK&7&lI&6&lE&f&lD&8) &7%player% &7» &f%message%"
+
+	if player's group = "helper":
+		if {stats.eula::%player%} = 1:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&3&lMANOS&8) &8(<##7cf788>&lHELPER&8) &3%player% &7» &f%message%"
+		if {stats.eula::%player%} = 2:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&e&lGYRA&8) &8(<##7cf788>&lHELPER&8) &e%player% &7» &f%message%"
+		if {stats.eula::%player%} = 3:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&2&lZUME&8) &8(<##7cf788>&lHELPER&8) &2%player% &7» &f%message%"
+		if {stats.eula::%player%} = 0:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(<##7cf788>&lHELPER&8) &7%player% &7» &f%message%"
+			
+	if player's group = "mod":
+		if {stats.eula::%player%} = 1:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&3&lMANOS&8) &8(<##f7ef7c>&lMODERATOR&8) &3%player% &7» &f%message%"
+		if {stats.eula::%player%} = 2:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&e&lGYRA&8) &8(<##f7ef7c>&lMODERATOR&8) &e%player% &7» &f%message%"
+		if {stats.eula::%player%} = 3:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&2&lZUME&8) &8(<##f7ef7c>&lMODERATOR&8) &2%player% &7» &f%message%"
+		if {stats.eula::%player%} = 0:
+			set chat format to "&7・&8[&9%{stats.level::%player%}%&8] &8(&<##f7ef7c>&lMODERATOR&8) &7%player% &7» &f%message%"
+

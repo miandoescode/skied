@@ -1,0 +1,20 @@
+options:
+    admsg_default: /ad Skied | SKYBLOCK | SUPER FUN | /freestuff
+    admsg_vip: /ad Skied &8| &6SKYBLOCK &8| &bJUST RELEASED &8| &f/freestuff
+    admsg_pro: /ad Skied &8| &6&lSKYBLOCK &8| &b&lBRAND NEW &8| &f/freestuff
+    admsg_legend: /ad Skied &7(&6&l&nCLICK&7) &6&lSKYBLOCK &8| &b&lPAY&f&lPAL &b&lPAYOUTS &8| &f/freestuff
+    admsg_patron: /ad Skied &7(&6&l&nCLICK ME&7) &6&lSKYBLOCK &8| &a&lBRAND NEW &8| &f/freestuff
+command /admsg:
+    aliases: ad, advert, advertise, admessage
+    trigger:
+        send ""
+        send "&8&l&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        send ""
+        send "<suggest command:{@admsg_default}> &8► (&d&lCLICK-HERE&8)&7 to copy the &7[DEFAULT] &7Ad message."
+        send "<suggest command:{@admsg_vip}> &8► (&d&lCLICK-HERE&8)&7 to copy the &a[VIP] &7Ad message."
+        send "<suggest command:{@admsg_pro}> &8► (&d&lCLICK-HERE&8)&7 to copy the &b[PRO] &7Ad message."
+        send "<suggest command:{@admsg_legend}> &8► (&d&lCLICK-HERE&8)&7 to copy the &6[LEGEND] &7Ad message."
+        send "<suggest command:{@admsg_patron}> &8► (&d&lCLICK-HERE&8)&7 to copy the &3[PATRON] &7Ad message."
+        send ""
+        send "&8&l&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        send ""

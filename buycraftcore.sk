@@ -1,0 +1,10 @@
+command /announcepurchase <text> <text>:
+	permission: console.announce
+	trigger:
+		broadcast " "
+		broadcast "                          &b&lSTORE PURCHASE"
+		broadcast "        &f%arg-1% &7just took advantage of the &b&l50%% SALE"
+		broadcast "                    &7and purchased &b&l%arg-2%"
+		broadcast " "
+		broadcast "                    &7Get goodies & more @ &b/buy                                              "
+		broadcast " "
